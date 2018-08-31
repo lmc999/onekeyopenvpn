@@ -72,18 +72,18 @@ echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf
 #配置服务端server.conf
 cd /etc/openvpn
 rm -f server.conf
-curl -o server.conf https://raw.githubusercontent.com/yobabyshark/onekeyopenvpn/master/server.conf
+curl -o server.conf https://raw.githubusercontent.com/lmc999/onekeyopenvpn/master/server.conf
 
 #将openvpn客户端文件下载到client
-curl -o /etc/openvpn/client/client.ovpn https://raw.githubusercontent.com/yobabyshark/onekeyopenvpn/master/client.ovpn
+curl -o /etc/openvpn/client/client.ovpn https://raw.githubusercontent.com/lmc999/onekeyopenvpn/master/client.ovpn
 
 #下载客户端udp程序
 #wget -P /etc/openvpn/client/ https://github.com/yobabyshark/onekeyopenvpn/raw/master/udp2raw.exe
 #wget -P /etc/openvpn/client/ https://github.com/yobabyshark/onekeyopenvpn/raw/master/speederv2.exe
 
 #下载客户端脚本
-curl -o /etc/openvpn/client/client_pre.bat https://raw.githubusercontent.com/yobabyshark/onekeyopenvpn/master/client_pre.bat
-curl -o /etc/openvpn/client/client_down.bat https://raw.githubusercontent.com/yobabyshark/onekeyopenvpn/master/client_down.bat
+curl -o /etc/openvpn/client/client_pre.bat https://raw.githubusercontent.com/lmc999/onekeyopenvpn/master/client_pre.bat
+curl -o /etc/openvpn/client/client_down.bat https://raw.githubusercontent.com/lmc999/onekeyopenvpn/master/client_down.bat
 
 #修改client_pre脚本ip
 serverip=$(curl icanhazip.com)
@@ -97,7 +97,7 @@ curl -o udp2raw https://raw.githubusercontent.com/yobabyshark/onekeyopenvpn/mast
 chmod +x speederv2 udp2raw
 
 #启动udpspeeder和udp2raw
-nohup ./speederv2 -s -l0.0.0.0:9999 -r127.0.0.1:1194 -f2:4 --mode 0 --timeout 1 >speeder.log 2>&1 &
+nohup ./speederv2 -s -l0.0.0.0:9999 -r127.0.0.1:1194 -f2:4 --mode 0 --timeout 0 >speeder.log 2>&1 &
 nohup ./udp2raw -s -l0.0.0.0:9898 -r 127.0.0.1:9999  --raw-mode faketcp  -a -k passwd >udp2raw.log 2>&1 &
 
 #启动openvpn
@@ -110,7 +110,7 @@ cat > /etc/rc.d/init.d/openv<<-EOF
 #description:openv
 
 cd /usr/src/udp
-nohup ./speederv2 -s -l0.0.0.0:9999 -r127.0.0.1:1194 -f2:4 --mode 0 --timeout 1 >speeder.log 2>&1 &
+nohup ./speederv2 -s -l0.0.0.0:9999 -r127.0.0.1:1194 -f2:4 --mode 0 --timeout 0 >speeder.log 2>&1 &
 nohup ./udp2raw -s -l0.0.0.0:9898 -r 127.0.0.1:9999  --raw-mode faketcp  -a -k passwd >udp2raw.log 2>&1 &
 systemctl start openvpn@server
 EOF
