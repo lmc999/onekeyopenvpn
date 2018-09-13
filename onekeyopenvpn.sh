@@ -80,13 +80,13 @@ echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf
 #配置服务端server.conf
 cd /etc/openvpn
 rm -f server.conf
-curl -o server.conf https://raw.githubusercontent.com/lmc999/onekeyopenvpn/master/server.conf
+curl -o server.conf https://raw.githubusercontent.com/lmc999/onekeyopenvpn/test/server.conf
 
 #将账号密码检测脚本checkpsw.sh下载到openvpn根目录
 curl -o /etc/openvpn/checkpsw.sh https://raw.githubusercontent.com/lmc999/onekeyopenvpn/test/checkpsw.sh
 
 #将openvpn客户端文件下载到client
-curl -o /etc/openvpn/client/client.ovpn https://raw.githubusercontent.com/lmc999/onekeyopenvpn/master/client.ovpn
+curl -o /etc/openvpn/client/client.ovpn https://raw.githubusercontent.com/lmc999/onekeyopenvpn/test/client.ovpn
 
 #下载客户端udp程序
 #wget -P /etc/openvpn/client/ https://github.com/yobabyshark/onekeyopenvpn/raw/master/udp2raw.exe
