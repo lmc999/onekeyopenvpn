@@ -82,6 +82,9 @@ cd /etc/openvpn
 rm -f server.conf
 curl -o server.conf https://raw.githubusercontent.com/lmc999/onekeyopenvpn/master/server.conf
 
+#将账号密码检测脚本checkpsw.sh下载到openvpn根目录
+curl -o /etc/openvpn/checkpsw.sh https://raw.githubusercontent.com/lmc999/onekeyopenvpn/test/checkpsw.sh
+
 #将openvpn客户端文件下载到client
 curl -o /etc/openvpn/client/client.ovpn https://raw.githubusercontent.com/lmc999/onekeyopenvpn/master/client.ovpn
 
