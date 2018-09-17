@@ -86,8 +86,8 @@ curl -o server.conf https://raw.githubusercontent.com/lmc999/onekeyopenvpn/test/
 curl -o /etc/openvpn/checkpsw.sh https://raw.githubusercontent.com/lmc999/onekeyopenvpn/test/checkpsw.sh
 chmod +x /etc/openvpn/checkpsw.sh
 
-#生成密码储存文件
-vim /etc/openvpn/psw-file
+#下载密码储存文件
+wget -P /etc/openvpn https://raw.githubusercontent.com/lmc999/onekeyopenvpn/test/psw-file
 
 #将openvpn客户端文件下载到client
 curl -o /etc/openvpn/client/client.ovpn https://raw.githubusercontent.com/lmc999/onekeyopenvpn/test/client.ovpn
